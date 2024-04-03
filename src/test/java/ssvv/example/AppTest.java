@@ -32,22 +32,6 @@ public class AppTest {
     }
 
     @Test
-    public void testAddAssignment() {
-        Validator<Student> studentValidator = new StudentValidator();
-        Validator<Tema> temaValidator = new TemaValidator();
-        Validator<Nota> notaValidator = new NotaValidator();
-
-        StudentXMLRepository fileRepository1 = new StudentXMLRepository(studentValidator, "studenti.xml");
-        TemaXMLRepository fileRepository2 = new TemaXMLRepository(temaValidator, "teme.xml");
-        NotaXMLRepository fileRepository3 = new NotaXMLRepository(notaValidator, "note.xml");
-
-        Service service = new Service(fileRepository1, fileRepository2, fileRepository3);
-
-        service.deleteStudent("10");
-        assert service.saveTema("10", "descriere", 11, 1) == 1;
-    }
-
-    @Test
     public void testAddStudentInvalidGroupSmall() {
         Validator<Student> studentValidator = new StudentValidator();
         Validator<Tema> temaValidator = new TemaValidator();
@@ -173,5 +157,36 @@ public class AppTest {
         Service service = new Service(fileRepository1, fileRepository2, fileRepository3);
 
         assert service.saveStudent("", "Andrei", 911) == 0;
+    }
+
+    @Test
+    public void testAddAssignmentValid() {
+        Validator<Student> studentValidator = new StudentValidator();
+        Validator<Tema> temaValidator = new TemaValidator();
+        Validator<Nota> notaValidator = new NotaValidator();
+
+        StudentXMLRepository fileRepository1 = new StudentXMLRepository(studentValidator, "studenti.xml");
+        TemaXMLRepository fileRepository2 = new TemaXMLRepository(temaValidator, "teme.xml");
+        NotaXMLRepository fileRepository3 = new NotaXMLRepository(notaValidator, "note.xml");
+
+        Service service = new Service(fileRepository1, fileRepository2, fileRepository3);
+
+        service.deleteTema("10");
+        assert service.saveTema("10", "descriere", 11, 1) == 1;
+    }
+
+    @Test
+    public void testAddAssignmentInvalidId() {
+        Validator<Student> studentValidator = new StudentValidator();
+        Validator<Tema> temaValidator = new TemaValidator();
+        Validator<Nota> notaValidator = new NotaValidator();
+
+        StudentXMLRepository fileRepository1 = new StudentXMLRepository(studentValidator, "studenti.xml");
+        TemaXMLRepository fileRepository2 = new TemaXMLRepository(temaValidator, "teme.xml");
+        NotaXMLRepository fileRepository3 = new NotaXMLRepository(notaValidator, "note.xml");
+
+        Service service = new Service(fileRepository1, fileRepository2, fileRepository3);
+
+        assert service.saveTema("", "descriere", 11, 1) == 0;
     }
 }
