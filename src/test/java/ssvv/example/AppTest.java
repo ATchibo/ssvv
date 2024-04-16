@@ -96,7 +96,7 @@ public class AppTest {
     }
 
     @Test
-    public void testAddAssignmentExistentId() {
+    public void testAddAssignmentExistingId() {
         service.deleteTema("10");
         assert service.saveTema("10", "desc", 11, 1) == 1;
 
