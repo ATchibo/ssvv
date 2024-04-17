@@ -59,6 +59,8 @@ public class BigBangTest {
 
     @Test
     public void testAll() {
+        service.deleteTema("20");
+        service.deleteStudent("1002");
         assert service.saveStudent("1002", "a", 911) == 1;
         assert service.saveTema("20", "a", 10, 5) == 1;
         assert service.saveNota("1002", "20", 10, 5, "a") == 1;
