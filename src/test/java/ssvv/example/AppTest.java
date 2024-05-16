@@ -157,4 +157,22 @@ public class AppTest {
             assert false;
         }
     }
+
+    @Test
+    public void integrationAddStudent() {
+        assert service.saveStudent("1001", "a", 911) == 1;
+    }
+
+    @Test
+    public void integrationAddAssignment() {
+        assert service.saveStudent("1001", "a", 911) == 1;
+        assert service.saveTema("10", "a", 10, 5) == 1;
+    }
+
+    @Test
+    public void integrationAddGrade() {
+        assert service.saveStudent("1001", "a", 911) == 1;
+        assert service.saveTema("10", "a", 10, 5) == 1;
+        assert service.saveNota("1001", "10", 10, 5, "a") == 1;
+    }
 }
